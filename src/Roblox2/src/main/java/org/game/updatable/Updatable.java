@@ -1,4 +1,16 @@
 package main.java.org.game.updatable;
 
-public interface Updatable {
+public abstract class Updatable {
+
+    private String tag="";
+    private boolean isInitialized=false;
+
+    /** az elso update hivas elott hivodik.*/
+    public abstract void start();
+    public abstract void update();
+
+    public final String getTag(){return tag;}
+    public final void setTag(String tag){this.tag=tag;}
+    public final boolean isInitialized(){return this.isInitialized;}
+    public final void setInitializedTrue(){this.isInitialized=true;}
 }
