@@ -44,4 +44,32 @@ public class Image extends Renderable {
         }
         graphics.drawImage(image, (int)position.x, (int)position.y, (int)(width * scale.x), (int)(height * scale.y), null, null);
     }
+
+    public Vec2 getScale() {
+        return scale;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setScale(Vec2 scale) {
+        this.scale = scale;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }
