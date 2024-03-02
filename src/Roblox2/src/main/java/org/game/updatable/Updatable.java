@@ -1,13 +1,15 @@
 package main.java.org.game.updatable;
 
+import main.java.org.game.Isten;
+
 public abstract class Updatable {
 
     private String tag="";
     private boolean isInitialized=false;
 
     /** az elso update hivas elott hivodik.*/
-    public abstract void onStart();
-    public abstract void onUpdate();
+    public abstract void onStart(Isten isten);
+    public abstract void onUpdate(float deltaTime);
     public abstract void onDestroy();
 
     public final String getTag(){return tag;}

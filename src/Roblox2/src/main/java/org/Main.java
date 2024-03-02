@@ -10,13 +10,8 @@ public class Main {
     public static void main(String[] args) {
 
         GameManager gameManager = new GameManager();
-        String imagePath = "./assets/cube.jpg";
-        gameManager.gameRenderer.addRenderable(new Text("Hello!", new Vec2(150, 100), 68, 255, 255, 255));
-        gameManager.gameRenderer.addRenderable(new Image(new Vec2(200,200), 1, 1, new Vec2(100,100), imagePath));
 
-        while(true) {
-            gameManager.gameRenderer.repaint();
-        }
+        gameManager.gameLoop();
 
     }
 }

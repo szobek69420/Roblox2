@@ -10,7 +10,8 @@ public class GameManager {
 
     private JFrame frame;
     private JPanel currentPanel;
-    private Isten isten;
+
+    private GameStage stage=GameStage.INGAME;
 
     public GameManager() {
         //Create frame
@@ -20,20 +21,59 @@ public class GameManager {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setBackground(new Color(50,50,50));
-        //Create Isten class
-        isten = new Isten();
-        isten.init();
-        frame.add(isten.getRenderer());
-        currentPanel = isten.getRenderer();
+
     }
 
     public void changePanel(JPanel panel) {
+        boolean isPanelAdded=false;
+        for(int i=0;i<frame.getComponentCount();i++)
+        {
+            if(frame.getComponent(i)==panel)
+            {
+                isPanelAdded=true;
+                break;
+            }
+        }
+
+        if(!isPanelAdded)
+            frame.add(panel);
+
         frame.setContentPane(panel);
         panel.requestFocusInWindow();
         frame.revalidate();
-        currentPanel.setFocusable(false);
+        frame.pack();
         currentPanel = panel;
-        currentPanel.setFocusable(true);
+        //currentPanel.setFocusable(false);
+        //currentPanel.setFocusable(true);
     }
 
+    public void gameLoop()
+    {
+        while(true)
+        {
+            switch (stage)
+            {
+                case INGAME:
+                    Isten isten=new Isten();
+                    isten.init();
+                    changePanel(isten.getRenderer());
+
+                    long lastFrame=System.nanoTime();
+                    while(stage==GameStage.INGAME)
+                    {
+                        long currentTime=System.nanoTime();
+                        float deltaTime=(float)((currentTime-lastFrame)*0.000000001);
+                        lastFrame=currentTime;
+
+                        isten.update(deltaTime);
+                    }
+                    break;
+            }
+        }
+    }
+
+
+    public enum GameStage{
+        MAIN_MENU, INGAME
+    }
 }
