@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Collider
 {
+    public final int id;
     private Vec2 position;
     private Vec2 scale;
     private Vec2 velocity;
@@ -16,6 +17,7 @@ public class Collider
 
     public Collider()
     {
+        id=nextId++;
         position=new Vec2();
         scale=new Vec2(1);
         velocity=new Vec2();
@@ -27,6 +29,7 @@ public class Collider
 
     public Collider(Vec2 position, Vec2 scale)
     {
+        id=nextId++;
         this.position=position.clone();
         this.scale=scale.clone();
         this.velocity=new Vec2();
@@ -53,6 +56,8 @@ public class Collider
     public void setMovability(boolean isMovable){this.isMovable=isMovable;}
 
     //static
+    private static int nextId=0;
+
     public static void resolveCollision(Collider c1, Collider c2)
     {
         if(c1.isMovable&&!c2.isMovable)
