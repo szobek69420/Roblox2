@@ -6,8 +6,9 @@ public abstract class Updatable {
     private boolean isInitialized=false;
 
     /** az elso update hivas elott hivodik.*/
-    public abstract void start();
-    public abstract void update();
+    public abstract void onStart();
+    public abstract void onUpdate();
+    public abstract void onDestroy();
 
     public final String getTag(){return tag;}
     public final void setTag(String tag){this.tag=tag;}
