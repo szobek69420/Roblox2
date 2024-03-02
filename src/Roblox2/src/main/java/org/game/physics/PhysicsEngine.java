@@ -49,6 +49,12 @@ public class PhysicsEngine
         //TODO if necessary
     }
 
+    public void reset()
+    {
+        simulatedColliders.clear();
+        colliderGroups.clear();
+    }
+
     public Collider getCollider(int colliderId)
     {
         for(int i=0;i<simulatedColliders.size();i++)
