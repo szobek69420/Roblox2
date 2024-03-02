@@ -35,7 +35,7 @@ public class Isten {
 
         //call onUpdates
         for(Updatable u : updatables)
-            u.onUpdate(deltaTime);
+            u.onUpdate(this,deltaTime);
 
         renderer.repaint();
     }
@@ -60,5 +60,15 @@ public class Isten {
 
     public GameRenderer getRenderer() {
         return renderer;
+    }
+
+    public Vec2 convertWorldToScreen(Vec2 worldSpaceCoords,Vec2 centerOfScreenInWorldSpace, float pixelsPerWorldSpaceUnit)
+    {
+        Vec2 coords=Vec2.subtract(worldSpaceCoords,centerOfScreenInWorldSpace);
+        coords.scale(pixelsPerWorldSpaceUnit);
+        coords.x+=0.5f*this.renderer.getWidth();
+        coords.y+=0.5f*this.renderer.getHeight();
+        coords.y=this.renderer.getHeight()-coords.y;
+        return coords;
     }
 }
