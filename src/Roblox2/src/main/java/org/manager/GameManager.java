@@ -55,8 +55,8 @@ public class GameManager {
             {
                 case INGAME:
                     Isten isten=new Isten();
+                    changePanel(isten.getRenderer());//ez az isten.init elott fusson
                     isten.init();
-                    changePanel(isten.getRenderer());
 
                     long lastFrame=System.nanoTime();
                     while(stage==GameStage.INGAME)
