@@ -6,19 +6,29 @@ import java.util.ArrayList;
 
 public class ColliderGroup
 {
+    public final int id;
     private ArrayList<Collider> colliders;
     Vec2 lowerBound, upperBound;//the lower left and upper right corner of the box, that contains all of the colliders in the collider group
 
     public ColliderGroup()
     {
+        id=nextId++;
         colliders=new ArrayList<>();
         lowerBound=new Vec2();
         upperBound=new Vec2();
     }
 
-    private ArrayList<Collider> getColliders()//returns a reference to the colliders list
+    public ArrayList<Collider> getColliders()//returns a reference to the colliders list
     {
         return colliders;
+    }
+
+    public Collider getCollider(int colliderId)
+    {
+        for(int i=0;i<colliders.size();i++)
+            if(colliders.get(i).id==colliderId)
+                return colliders.get(i);
+        return null;
     }
 
     public void addCollider(Collider c)
@@ -133,4 +143,6 @@ public class ColliderGroup
             return false;
         return true;
     }
+
+    private static int nextId=0;
 }

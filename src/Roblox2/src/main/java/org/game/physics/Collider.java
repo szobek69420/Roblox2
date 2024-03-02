@@ -39,6 +39,11 @@ public class Collider
         lastCollisionTags=new ArrayList<>();
     }
 
+    public void clearCollisionHistory()
+    {
+        lastCollisionTags.clear();
+    }
+
     //getters n setters
     public Vec2 getPosition(){return this.position;}//doesn't clone return value
     public Vec2 getScale() {return this.scale;}//doesn't clone return value
@@ -91,6 +96,8 @@ public class Collider
             c2.lastCollisionTags.add(c1.tag);
             if(shouldResolve)
             {
+                c1.velocity.x=0;
+
                 if(c1.position.x<c2.position.x)
                     c1.position.x-=penetrationX;
                 else
@@ -103,6 +110,8 @@ public class Collider
             c2.lastCollisionTags.add(c1.tag);
             if(shouldResolve)
             {
+                c1.velocity.y=0;
+
                 if(c1.position.y<c2.position.y)
                     c1.position.y-=penetrationY;
                 else
