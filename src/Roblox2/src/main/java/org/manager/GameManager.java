@@ -11,7 +11,7 @@ public class GameManager {
     private JFrame frame;
     private JPanel currentPanel;
 
-    private GameStage stage=GameStage.INGAME;
+    private GameStage stage=GameStage.MAIN_MENU;
 
     public GameManager() {
         //Create frame
@@ -53,6 +53,10 @@ public class GameManager {
         {
             switch (stage)
             {
+                case MAIN_MENU:
+                    stage=GameStage.INGAME;
+                    break;
+
                 case INGAME:
                     Isten isten=new Isten();
                     changePanel(isten.getRenderer());//ez az isten.init elott fusson
